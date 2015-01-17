@@ -1,0 +1,28 @@
+AllCops:
+  RunRailsCops: true
+
+  Exclude:
+    - 'bin/*'
+    - 'db/schema.rb'
+
+Style/BlockComments:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+# Offense count: 26
+# Configuration parameters: AllowURI.
+Style/LineLength:
+  Max: 112
+
+# Offense count: 1
+# Cop supports --auto-correct.
+Style/SingleSpaceBeforeFirstArg:
+  Enabled: false
+
+# Offense count: 4
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+Style/StringLiterals:
+  Enabled: false

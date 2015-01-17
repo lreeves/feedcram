@@ -1,0 +1,5 @@
+%h1 Welcome!
+
+- if SETTINGS[:allow_registrations]
+  = link_to 'Create Account', new_user_path
+= link_to 'Login', '/login'

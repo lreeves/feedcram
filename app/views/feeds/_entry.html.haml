@@ -1,0 +1,11 @@
+%h3
+  = link_to entry.title, entry.url
+%h4
+  = link_to entry.feed.title, entry.feed.website
+  - unless entry.posting_date.blank?
+    = entry.posting_date.localtime
+
+%div.clearfix
+  = sanitize entry.content.to_s.force_encoding('UTF-8')
+
+%br.clear

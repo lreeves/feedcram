@@ -1,0 +1,11 @@
+%h1 Reading
+- @entries.each do |entry|
+  = render :partial => 'entry', locals: { entry: entry }
+
+%div
+  %center
+    = form_tag '/read', method: :post do
+      = hidden_field_tag 'entries', @entries.pluck('id').join(',')
+      = submit_tag 'Mark As Read', class: 'btn btn-primary btn-large'
+
+%br

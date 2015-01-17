@@ -1,0 +1,18 @@
+%table.table
+  %tr
+    %th Feed
+    %th URL
+    %th Actions
+  - @user.feeds.each do |feed|
+    %tr
+      %td= feed.title
+      %td= feed.url
+      %td
+        = link_to 'Update Now', "/feeds/#{feed.id}/update", class: 'btn btn-primary btn-xs'
+        = link_to 'Unsubscribe', "/feeds/#{feed.id}/unsubscribe", class: 'btn btn-danger btn-xs'
+
+= form_tag '/feeds/add', method: 'post' do
+  %div.form_group
+    = label_tag(:url, 'URL')
+    = text_field_tag(:url, nil, size: 40)
+  = submit_tag('Add', class: 'btn btn-default')
