@@ -1,6 +1,5 @@
-%h1 Reading
-- @entries.each do |entry|
-  = render :partial => 'entry', locals: { entry: entry }
+- @entries.each_with_index do |entry, index|
+  = render :partial => 'entry', locals: { entry: entry, index: index }
 
 %div
   %center
