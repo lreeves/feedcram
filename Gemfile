@@ -15,6 +15,7 @@ gem 'safe_yaml', '1.0.4'
 gem 'therubyracer'
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
+gem 'pg'
 
 group :development do
   gem 'rubocop'
