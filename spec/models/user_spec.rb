@@ -9,7 +9,7 @@ RSpec.describe User, type: :model do
 
   describe '#unread_entries' do
     it 'returns items to read' do
-      expect(user.unread_entries.size).to eq 2
+      expect(user.unread_entry_ids.size).to eq 2
     end
 
     context 'when an item is read' do
@@ -18,7 +18,7 @@ RSpec.describe User, type: :model do
       end
 
       it 'returns one item to read' do
-        expect(user.unread_entries.size).to eq 1
+        expect(user.unread_entry_ids.size).to eq 1
       end
     end
   end

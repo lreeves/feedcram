@@ -6,18 +6,14 @@ class User < ActiveRecord::Base
   has_many :feeds, through: :user_subscriptions
   has_many :feed_entries, through: :feeds
 
-  def unread_entries(limit: 10)
+  def unread_entry_ids
     all = feed_entries.select('id', 'posting_date').to_a
 
     seen = viewed.pluck(:feed_entry_id)
     unseen = all.reject { |e| seen.include? e.id }
     unseen.sort_by! { |entry| entry.posting_date.to_i }.reverse!
 
-    if limit == 0
-      unseen.map(&:id)
-    else
-      unseen.first(limit).map(&:id)
-    end
+    unseen.map(&:id)
   end
 
   def mark_entries_read(entry_ids)

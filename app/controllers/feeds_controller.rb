@@ -8,8 +8,8 @@ class FeedsController < ApplicationController
   end
 
   def read
-    unread_entries = @user.unread_entries
-    @entries = FeedEntry.where(id: unread_entries).order(posting_date: :desc)
+    @unread_entry_ids = @user.unread_entry_ids
+    @entries = FeedEntry.where(id: @unread_entry_ids.first(10)).order(posting_date: :desc)
   end
 
   def mark_as_read
