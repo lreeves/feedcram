@@ -35,3 +35,4 @@ bundle exec rake feeds:update
 Feel free to make any contributions; follow the usual GitHub flow of a pull
 request, writing any relevant tests and making sure that the existing specs
 pass.
+
