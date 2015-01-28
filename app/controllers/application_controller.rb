@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   def require_login
     unless session[:user_id].present?
       flash[:error] = "You must be logged in to access this section"
-      redirect_to '/'
+      return redirect_to '/'
     end
 
     @user = User.find session[:user_id]
