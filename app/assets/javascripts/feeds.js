@@ -1,22 +1,27 @@
 (function ($) {
   $(function () {
-
-    $("*").keypress(function(event) {
+    $(document).keypress(function(event) {
       if(event.which == 106) {
-        // alert('j');
-        var $next = $('current').next('.entry');
-        // alert($next);
-        var top = $next.offset().top;
+        var $cur = $('.current');
+        var $next = $cur.next('.entry');
 
         $('body').animate({
-          scrollTop: top
-        }, function () {
-          $next.addClass('current');
+          scrollTop: $next.offset().top
         });
+
+        $cur.removeClass('current');
+        $next.addClass('current');
       } else if (event.which == 107) {
-        alert('k');
+        var $cur = $('.current');
+        var $prev = $cur.prev('.entry');
+
+        $('body').animate({
+          scrollTop: $prev.offset().top
+        });
+
+        $cur.removeClass('current');
+        $prev.addClass('current');
       }
     });
   })
-
 })(jQuery);
