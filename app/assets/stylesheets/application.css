@@ -17,3 +17,11 @@
 .current {
   background-color: #eeeeee;
 }
+
+.entry {
+  padding: 5px 10px;
+}
+
+.entry img {
+   max-width: 100%;
+}
