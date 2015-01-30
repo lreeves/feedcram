@@ -20,6 +20,7 @@ gem 'pg'
 group :development do
   gem 'rubocop'
   gem 'quiet_assets'
+  gem 'bullet'
 end
 
 group :test do
