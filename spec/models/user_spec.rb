@@ -7,7 +7,14 @@ RSpec.describe User, type: :model do
   let!(:feed_entry2) { FeedEntry.create!(feed: feed, entry: 'y') }
   let!(:sub) { UserSubscription.create!(user: user, feed: feed) }
 
-  describe '#unread_entries' do
+  describe '#mark_all_read' do
+    it 'marks all entries as read' do
+      user.mark_all_read
+      expect(user.unread_entry_ids.count).to eq 0
+    end
+  end
+
+  describe '#unread_entry_ids' do
     it 'returns items to read' do
       expect(user.unread_entry_ids.size).to eq 2
     end

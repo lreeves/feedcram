@@ -15,16 +15,12 @@ class FeedsController < ApplicationController
   def mark_as_read
     entry_ids = params[:entries].split(',')
     @user.mark_entries_read(entry_ids)
-
     redirect_to :back
   end
 
   def mark_all_read
-    entry_ids = @user.unread_entries(limit: 0)
-    @user.mark_entries_read(entry_ids)
-
-    flash[:notice] = "#{entry_ids.count} items marked as read."
-
+    @user.mark_all_read
+    flash[:notice] = 'Marked everything as read!'
     redirect_to :back
   end
 

@@ -6,6 +6,10 @@ class User < ActiveRecord::Base
   has_many :feeds, through: :user_subscriptions
   has_many :feed_entries, through: :feeds
 
+  def mark_all_read
+    mark_entries_read(unread_entry_ids)
+  end
+
   def unread_entry_ids
     all = feed_entries.select('id', 'posting_date').to_a
 
