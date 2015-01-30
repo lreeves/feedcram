@@ -81,4 +81,13 @@ RSpec.describe Feed, type: :model do
       end
     end
   end
+
+  describe '#crawl_all' do
+    let!(:feed) { Feed.create(url: 'a') }
+
+    it 'crawls all feeds' do
+      expect_any_instance_of(Feed).to receive(:crawl).and_return(nil)
+      Feed.crawl_all
+    end
+  end
 end

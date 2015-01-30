@@ -21,6 +21,13 @@ class Feed < ActiveRecord::Base
     end
   end
 
+  def self.crawl_all
+    Feed.all.each do |feed|
+      puts "Crawling #{feed.url}"
+      feed.crawl
+    end
+  end
+
   def parse(response)
     begin
       feed = Feedjira::Feed.parse(response)
