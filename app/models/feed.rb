@@ -3,6 +3,8 @@ class Feed < ActiveRecord::Base
   has_many :users, through: :user_subscriptions
   has_many :feed_entries
 
+  scope :with_subscribers, -> { joins(:user_subscriptions) }
+
   def crawl
     response = fetch
 
@@ -22,7 +24,7 @@ class Feed < ActiveRecord::Base
   end
 
   def self.crawl_all
-    Feed.all.each do |feed|
+    Feed.with_subscribers.each do |feed|
       puts "Crawling #{feed.url}"
       feed.crawl
     end
