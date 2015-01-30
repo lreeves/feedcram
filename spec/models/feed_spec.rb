@@ -23,6 +23,24 @@ RSpec.describe Feed, type: :model do
       end
     end
 
+    context 'for redirected feeds' do
+      let(:feed) { Feed.create(url: source) }
+      let(:source) { 'http://redirect_source' }
+      let(:target) { 'http://redirect_target' }
+
+      before do
+        stub_request(:get, source).
+          to_return(status: 301, body: nil, headers: { Location: target })
+        stub_request(:get, target).
+          to_return(status: 200, body: '')
+      end
+
+      it 'updates the URL to the target' do
+        feed.crawl
+        expect(feed.url).to eq target
+      end
+    end
+
     context 'for valid feeds' do
       feeds = {
         boingboing: 'http://feeds.boingboing.net/boingboing/iBag',

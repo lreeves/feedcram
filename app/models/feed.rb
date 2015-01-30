@@ -10,23 +10,37 @@ class Feed < ActiveRecord::Base
       update(crawl_errors: crawl_errors.to_i + 1)
       return
     else
-      begin
-        feed = Feedjira::Feed.parse(response)
-      rescue Feedjira::NoParserAvailable
-        update(crawl_errors: crawl_errors.to_i + 1)
-        return
-      end
+      feed = parse(response)
 
-      update(
-        title: feed.title,
-        website: feed.url)
-      feed.entries.each { |entry| update_entry(entry) }
+      if feed.present?
+        update(
+          title: feed.title,
+          website: feed.url)
+        feed.entries.each { |entry| update_entry(entry) }
+      end
+    end
+  end
+
+  def parse(response)
+    begin
+      feed = Feedjira::Feed.parse(response)
+    rescue Feedjira::NoParserAvailable
+      update(crawl_errors: crawl_errors.to_i + 1)
+      nil
     end
   end
 
   def fetch
     begin
-      Net::HTTP.get(URI(url))
+      response = Net::HTTP.get_response(URI(url))
+
+      if [301, 302].include? response.code.to_i
+        new_location = response.header['Location']
+        response = Net::HTTP.get_response(URI(new_location))
+        update(url: new_location)
+      end
+
+      response.body
     rescue
       ""
     end
