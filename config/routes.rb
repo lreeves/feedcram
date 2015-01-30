@@ -6,8 +6,6 @@ Rails.application.routes.draw do
   get  'login' => 'users#login'
   post 'authenticate' => 'users#authenticate'
 
-  get 'dashboard' => 'dashboard#index'
-
   post 'feeds/add' => 'feeds#add'
   get 'feeds/:id/update' => 'feeds#update'
   get 'feeds/:id/unsubscribe' => 'feeds#unsubscribe'

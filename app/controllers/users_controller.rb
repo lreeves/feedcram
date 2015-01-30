@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     unless u.blank?
       if u.authenticate(login_params[:password])
         session[:user_id] = u.id
-        return redirect_to '/dashboard'
+        return redirect_to '/read'
       end
     end
 

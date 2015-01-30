@@ -3,7 +3,7 @@ class WelcomeController < ApplicationController
 
   def index
     if session[:user_id].present?
-      return redirect_to '/dashboard'
+      return redirect_to '/read'
     end
   end
 end
