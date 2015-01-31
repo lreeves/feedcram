@@ -1,5 +1,14 @@
 (function ($) {
   $(function () {
+    // Select the first entry
+    $(document).ready(function() {
+      var $first = $('.entry').first();
+
+      if($first.length) {
+        $first.addClass('current');
+      }
+    });
+
     $(document).keypress(function(event) {
       if(event.which == 106) {
         var $cur = $('.current');
