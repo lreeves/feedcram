@@ -1,12 +1,19 @@
 (function ($) {
   $(function () {
-    // Select the first entry
     $(document).ready(function() {
+      // Select the first entry
       var $first = $('.entry').first();
 
       if($first.length) {
         $first.addClass('current');
       }
+
+      // Set all timestamps to browser local time
+      $.each($('span#timestamp'), function(i, element) {
+        rawDate = element.innerHTML.trim();
+        d = new Date(Date.parse(rawDate));
+        element.innerHTML = d.toLocaleString();
+      });
     });
 
     $(document).keypress(function(event) {
