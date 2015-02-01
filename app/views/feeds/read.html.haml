@@ -4,7 +4,7 @@
 %div
   %center
     = form_tag '/read', method: :post do
-      = hidden_field_tag 'entries', @entries.pluck('id').join(',')
+      = hidden_field_tag 'entries', @unread_entry_ids.join(',')
       = submit_tag 'Mark As Read', class: 'btn btn-primary btn-large mark-button'
 
 %br
