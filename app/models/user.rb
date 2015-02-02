@@ -11,9 +11,7 @@ class User < ActiveRecord::Base
   end
 
   def unread_entry_ids
-    all = feed_entries.select('id', 'posting_date')
-      .where.not(id: Viewed.select(:feed_entry_id).where(user_id: id))
-      .pluck(:id)
+    feed_entries.unseen(id).pluck(:id)
   end
 
   def mark_entries_read(entry_ids)
