@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150125012714) do
+ActiveRecord::Schema.define(version: 20150202012120) do
 
   create_table "feed_entries", force: :cascade do |t|
     t.integer  "feed_id"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20150125012714) do
   end
 
   add_index "feed_entries", ["feed_id", "entry"], name: "index_feed_entries_on_feed_id_and_entry", unique: true
+  add_index "feed_entries", ["posting_date"], name: "index_feed_entries_on_posting_date"
 
   create_table "feeds", force: :cascade do |t|
     t.string   "url"
