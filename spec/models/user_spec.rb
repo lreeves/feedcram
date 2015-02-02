@@ -10,13 +10,13 @@ RSpec.describe User, type: :model do
   describe '#mark_all_read' do
     it 'marks all entries as read' do
       user.mark_all_read
-      expect(user.unread_entry_ids.count).to eq 0
+      expect(user.unread_entries.count).to eq 0
     end
   end
 
   describe '#unread_entry_ids' do
     it 'returns two items to read' do
-      expect(user.unread_entry_ids.size).to eq 2
+      expect(user.unread_entries.size).to eq 2
     end
 
     context 'when there are unsubscribed feeds' do
@@ -26,7 +26,7 @@ RSpec.describe User, type: :model do
       end
 
       it 'returns two items to read' do
-        expect(user.unread_entry_ids.size).to eq 2
+        expect(user.unread_entries.size).to eq 2
       end
     end
 
@@ -36,7 +36,7 @@ RSpec.describe User, type: :model do
       end
 
       it 'returns one item to read' do
-        expect(user.unread_entry_ids.size).to eq 1
+        expect(user.unread_entries.size).to eq 1
       end
     end
   end

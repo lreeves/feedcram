@@ -7,11 +7,11 @@ class User < ActiveRecord::Base
   has_many :feed_entries, through: :feeds
 
   def mark_all_read
-    mark_entries_read(unread_entry_ids)
+    mark_entries_read(feed_entries.unseen(id).pluck(:id))
   end
 
-  def unread_entry_ids
-    feed_entries.unseen(id).pluck(:id)
+  def unread_entries
+    feed_entries.unseen(id).order(posting_date: :desc).includes(:feed).limit(10)
   end
 
   def mark_entries_read(entry_ids)
