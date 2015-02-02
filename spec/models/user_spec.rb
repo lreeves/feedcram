@@ -15,8 +15,19 @@ RSpec.describe User, type: :model do
   end
 
   describe '#unread_entry_ids' do
-    it 'returns items to read' do
+    it 'returns two items to read' do
       expect(user.unread_entry_ids.size).to eq 2
+    end
+
+    context 'when there are unsubscribed feeds' do
+      before do
+        second_feed = Feed.create!(url: 'url2')
+        FeedEntry.create!(feed: second_feed, entry: 'x')
+      end
+
+      it 'returns two items to read' do
+        expect(user.unread_entry_ids.size).to eq 2
+      end
     end
 
     context 'when an item is read' do
