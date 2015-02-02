@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 
   def unread_entry_ids
     all = feed_entries.select('id', 'posting_date')
-      .where("feed_entries.id NOT IN (SELECT viewed.feed_entry_id FROM viewed WHERE viewed.user_id = #{id})")
+      .where.not(id: Viewed.select(:feed_entry_id).where(user_id: id))
       .pluck(:id)
   end
 
