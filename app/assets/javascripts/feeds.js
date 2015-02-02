@@ -1,6 +1,6 @@
 (function ($) {
   $(function () {
-    $(document).ready(function() {
+    var ready = function() {
       // Select the first entry
       var first = $('.entry').first();
 
@@ -14,8 +14,12 @@
         var date = new Date(Date.parse(rawDate));
         element.innerHTML = date.toLocaleString();
       });
-    });
+    };
 
+    $(document).ready(ready);
+    $(document).on('page:load', ready);
+
+    // Setup hooks for vim keys navigation
     $(document).keypress(function(event) {
       var cur = $('.current');
 
