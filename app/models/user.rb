@@ -11,13 +11,9 @@ class User < ActiveRecord::Base
   end
 
   def unread_entry_ids
-    all = feed_entries.select('id', 'posting_date').to_a
-
-    seen = viewed.pluck(:feed_entry_id)
-    unseen = all.reject { |e| seen.include? e.id }
-    unseen.sort_by! { |entry| entry.posting_date.to_i }.reverse!
-
-    unseen.map(&:id)
+    all = feed_entries.select('id', 'posting_date')
+      .where("feed_entries.id NOT IN (SELECT viewed.feed_entry_id FROM viewed WHERE viewed.user_id = #{id})")
+      .pluck(:id)
   end
 
   def mark_entries_read(entry_ids)
