@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   end
 
   def unread_entry_ids
-    feed_entries.unseen(id).pluck(:id)
+    feed_entries.unseen(id).order(posting_date: :desc).pluck(:id)
   end
 
   def mark_entries_read(entry_ids)
