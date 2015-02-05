@@ -50,8 +50,8 @@
             .well.sidebar-nav
               %h3 Tools
               %ul.nav.nav-list
-                - if @unread_entry_ids.present?
-                  %li= "#{@unread_entry_ids.count} entries unread"
+                - if @unread_count.present?
+                  %li= "#{@unread_count} entries unread"
                 %li= link_to 'Mark All Read', '/mark_all_read', method: :post
           / /.well
         / /span
