@@ -3,7 +3,7 @@
     %th Feed
     %th URL
     %th Actions
-  - @user.feeds.each do |feed|
+  - @current_user.feeds.each do |feed|
     %tr
       %td= feed.title
       %td= feed.url

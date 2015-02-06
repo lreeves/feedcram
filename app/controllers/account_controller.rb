@@ -8,7 +8,7 @@ class AccountController < ApplicationController
     feeds = xml.xpath("//outline[@type='rss']")
 
     feeds.each do |feed|
-      @user.subscribe_to_url(feed['xmlUrl'])
+      current_user.subscribe_to_url(feed['xmlUrl'])
     end
 
     flash[:notice] = "Parsed #{feeds.length} feeds"

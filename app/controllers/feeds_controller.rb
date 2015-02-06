@@ -1,6 +1,6 @@
 class FeedsController < ApplicationController
   def add
-    @user.subscribe_to_url(feed_params[:url])
+    current_user.subscribe_to_url(feed_params[:url])
     redirect_to :back
   end
 
@@ -8,9 +8,10 @@ class FeedsController < ApplicationController
   end
 
   def read
-    @unread_entry_ids = @user.unread_entry_ids
-    @unread_count = @unread_entry_ids.count
-    @unread_entry_ids = @unread_entry_ids.first(10)
+    all_unread_entry_ids = current_user.unread_entry_ids
+
+    @unread_count = all_unread_entry_ids.count
+    @unread_entry_ids = all_unread_entry_ids.first(10)
     @entries = FeedEntry
       .where(id: @unread_entry_ids)
       .order(posting_date: :desc)
@@ -19,19 +20,19 @@ class FeedsController < ApplicationController
 
   def mark_as_read
     entry_ids = params[:entries].split(',')
-    @user.mark_entries_read(entry_ids)
+    current_user.mark_entries_read(entry_ids)
     redirect_to :back
   end
 
   def mark_all_read
-    @user.mark_all_read
+    current_user.mark_all_read
     flash[:notice] = 'Marked everything as read!'
     redirect_to :back
   end
 
   def unsubscribe
     feed = Feed.find(params[:id])
-    UserSubscription.find_by(user: @user, feed: feed).delete
+    UserSubscription.find_by(user: current_user, feed: feed).delete
     flash[:notice] = 'Unsubscribed from feed.'
     redirect_to :back
   end

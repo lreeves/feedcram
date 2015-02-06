@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   before_action :require_login
 
+  attr_reader :current_user
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -13,6 +15,6 @@ class ApplicationController < ActionController::Base
       return redirect_to '/'
     end
 
-    @user = User.find session[:user_id]
+    @current_user = User.find session[:user_id]
   end
 end
