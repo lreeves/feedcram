@@ -5,6 +5,7 @@ class FeedsController < ApplicationController
   end
 
   def index
+    @feeds = current_user.feeds
   end
 
   def read

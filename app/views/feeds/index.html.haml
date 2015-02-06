@@ -1,14 +1,16 @@
 %table.table
   %tr
     %th Feed
-    %th URL
+    %th Entries
+    %th Errors
     %th Actions
-  - @current_user.feeds.each do |feed|
+  - @feeds.order(:title, :url).each do |feed|
     %tr
-      %td= feed.title
-      %td= feed.url
+      %td= feed.title.blank? ? feed.url : feed.title
+      %td= feed.feed_entries.count
+      %td= feed.crawl_errors
       %td
-        = link_to 'Update Now', "/feeds/#{feed.id}/update", class: 'btn btn-primary btn-xs'
+        = link_to 'Update', "/feeds/#{feed.id}/update", class: 'btn btn-primary btn-xs'
         = link_to 'Unsubscribe', "/feeds/#{feed.id}/unsubscribe", class: 'btn btn-danger btn-xs'
 
 = form_tag '/feeds/add', method: 'post' do
