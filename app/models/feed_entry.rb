@@ -1,6 +1,6 @@
 class FeedEntry < ActiveRecord::Base
   before_create :set_default_time
-  belongs_to :feed
+  belongs_to :feed, counter_cache: true
 
   scope :unseen, ->(user_id) do
     where.not(id: Viewed.select(:feed_entry_id).where(user_id: user_id))

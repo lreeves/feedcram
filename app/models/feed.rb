@@ -19,6 +19,7 @@ class Feed < ActiveRecord::Base
           title: feed.title,
           website: feed.url)
         feed.entries.each { |entry| update_entry(entry) }
+        Feed.reset_counters(id, :feed_entries)
       end
     end
   end
