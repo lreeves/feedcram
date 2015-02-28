@@ -4,8 +4,24 @@ class FeedsController < ApplicationController
     redirect_to :back
   end
 
+  def export
+    @feeds = current_user.feeds
+  end
+
   def index
     @feeds = current_user.feeds
+  end
+
+  def mark_all_read
+    current_user.mark_all_read
+    flash[:notice] = 'Marked everything as read!'
+    redirect_to :back
+  end
+
+  def mark_as_read
+    entry_ids = params[:entries].split(',')
+    current_user.mark_entries_read(entry_ids)
+    redirect_to :back
   end
 
   def read
@@ -17,18 +33,6 @@ class FeedsController < ApplicationController
       .where(id: @unread_entry_ids)
       .order(posting_date: :desc)
       .includes(:feed)
-  end
-
-  def mark_as_read
-    entry_ids = params[:entries].split(',')
-    current_user.mark_entries_read(entry_ids)
-    redirect_to :back
-  end
-
-  def mark_all_read
-    current_user.mark_all_read
-    flash[:notice] = 'Marked everything as read!'
-    redirect_to :back
   end
 
   def unsubscribe
