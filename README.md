@@ -8,16 +8,22 @@ Twitter Bootstrap so the layout is reponsive and works well on mobile devices.
 ## Running the app
 
 You'll need to configure the database and the settings in the config directory
-(in the files named database.yml and settings.yml). There is configuration in
-the database file for Elastic Beanstalk as that's where I'm currently using
-this tool.
+(in the files named database.yml and settings.yml). The database configuration
+uses environment variables that can be set externally before starting the
+application
 
 Once you have things configured, install the necessary gems and boot the app
 locally as you would any other Rails app.
 
 ```shell
 bundle
-bundle exec rails server
+bin/rails server
+```
+
+If you run this in production I'd recommend using Unicorn:
+
+```shell
+bin/unicorn
 ```
 
 ## Updating Feeds
@@ -27,7 +33,7 @@ checks for IMS or ETag requests, so be gentle and run it at most every hour or
 more.
 
 ```shell
-bundle exec rake feeds:update
+bin/rake feeds:update
 ```
 
 ## Contributing
