@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.0'
+gem 'rails', '4.2.1'
 
 gem 'bcrypt'
 gem 'feedjira'
@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'less-rails'
 gem 'rspec-rails'
 gem 'safe_yaml', '1.0.4'
+gem 'sass'
 gem 'sass-rails', '~> 5.0'
 gem 'therubyracer'
 gem 'turbolinks'
