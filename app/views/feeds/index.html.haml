@@ -1,3 +1,13 @@
+%div.panel.panel-default
+  %div.panel-heading
+    %h3.panel-title Add Subscription
+  %div.panel-body
+    = form_tag '/feeds/add', method: 'post' do
+      %div.form_group
+        = label_tag :url, 'URL'
+        = text_field_tag :url, nil, size: 40
+        = submit_tag 'Add', class: 'btn btn-default'
+
 %table.table
   %tr
     %th Feed
@@ -12,9 +22,3 @@
       %td
         = link_to 'Update', "/feeds/#{feed.id}/update", class: 'btn btn-primary btn-xs'
         = link_to 'Unsubscribe', "/feeds/#{feed.id}/unsubscribe", class: 'btn btn-danger btn-xs'
-
-= form_tag '/feeds/add', method: 'post' do
-  %div.form_group
-    = label_tag(:url, 'URL')
-    = text_field_tag(:url, nil, size: 40)
-  = submit_tag('Add', class: 'btn btn-default')
