@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.1'
 
 gem 'bcrypt'
+gem 'bullet'
 gem 'feedjira'
 gem 'haml'
 gem 'jquery-rails'
@@ -20,7 +21,6 @@ gem 'unicorn'
 group :development do
   gem 'rubocop'
   gem 'quiet_assets'
-  gem 'bullet'
   gem 'sqlite3'
 end
 
