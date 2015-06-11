@@ -1,1 +1,0 @@
-*/30 * * * *  ( . /etc/profile.d/eb_envvars.sh ; . /etc/profile.d/use-app-ruby.sh ; cd /var/app/current ; PATH=/opt/elasticbeanstalk/lib/ruby/bin bundle exec rake feeds:update ) 1>/dev/null 2>/dev/null

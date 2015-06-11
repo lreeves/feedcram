@@ -17,5 +17,4 @@
 /tmp
 
 /coverage
-/.elasticbeanstalk
-public/assets
+/public/assets
