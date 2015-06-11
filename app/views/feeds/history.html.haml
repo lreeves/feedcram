@@ -6,7 +6,7 @@
   - @viewed.each do |viewed|
     %tr
       %td= link_to viewed.feed_entry.title, entry_path(viewed.feed_entry)
-      %td= viewed.feed_entry.feed.title
+      %td= link_to viewed.feed_entry.feed.title, feed_path(viewed.feed_entry.feed)
       %td= viewed.created_at.blank? ? '' : viewed.created_at.to_date
 
 = will_paginate @viewed

@@ -18,5 +18,6 @@ Rails.application.routes.draw do
   get 'account' => 'account#index'
   post 'upload' => 'account#upload'
 
-  resources :entries
+  resources :entries, only: :show
+  resources :feeds, only: :show
 end

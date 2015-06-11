@@ -16,7 +16,7 @@
     %th Actions
   - @feeds.order(:title, :url).each do |feed|
     %tr
-      %td= feed.title.blank? ? feed.url : feed.title
+      %td= link_to feed.title.blank? ? feed.url : feed.title, feed_path(feed)
       %td= feed.feed_entries.size
       %td= feed.crawl_errors
       %td

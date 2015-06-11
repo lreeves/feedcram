@@ -43,6 +43,13 @@ class FeedsController < ApplicationController
       .includes(:feed)
   end
 
+  def show
+    @feed = Feed.find(params[:id])
+    @entries = @feed.feed_entries.
+      order(created_at: :desc).
+      paginate(page: params[:page])
+  end
+
   def unsubscribe
     feed = Feed.find(params[:id])
     UserSubscription.find_by(user: current_user, feed: feed).delete

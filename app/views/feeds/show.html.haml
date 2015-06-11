@@ -1,0 +1,15 @@
+%div.panel.panel-default
+  %div.panel-heading
+    %h3.panel-title
+      = @feed.title
+
+%table.table
+  %tr
+    %th Title
+    %th Date
+  - @entries.each do |entry|
+    %tr
+      %td= link_to entry.title, entry_path(entry)
+      %td= entry.posting_date.to_date
+
+= will_paginate @entries
