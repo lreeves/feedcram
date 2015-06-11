@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   get 'history' => 'feeds#history'
   get 'account' => 'account#index'
   post 'upload' => 'account#upload'
+
+  resources :entries
 end

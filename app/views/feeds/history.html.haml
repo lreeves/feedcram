@@ -5,7 +5,7 @@
     %th Date
   - @viewed.each do |viewed|
     %tr
-      %td= viewed.feed_entry.title
+      %td= link_to viewed.feed_entry.title, entry_path(viewed.feed_entry)
       %td= viewed.feed_entry.feed.title
       %td= viewed.created_at.blank? ? '' : viewed.created_at.to_date
 
