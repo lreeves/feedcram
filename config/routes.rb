@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post 'read' => 'feeds#mark_as_read'
   post 'mark_all_read' => 'feeds#mark_all_read'
   get 'read' => 'feeds#read'
+  get 'history' => 'feeds#history'
   get 'account' => 'account#index'
   post 'upload' => 'account#upload'
 end

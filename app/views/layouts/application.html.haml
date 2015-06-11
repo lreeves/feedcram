@@ -32,7 +32,7 @@
 
     .navbar.navbar-default.navbar-static-top
       .container
-        %button.navbar-toggle{"data-target" => ".navbar-responsive-collapse", "data-toggle" => "collapse", :type => "button"}
+        %button.navbar-toggle{'data-target' => '.navbar-responsive-collapse', 'data-toggle' => 'collapse', :type => 'button'}
           %span.icon-bar
           %span.icon-bar
           %span.icon-bar
@@ -40,9 +40,10 @@
         .navbar-collapse.collapse.navbar-responsive-collapse
           - if session[:user_id].present?
             %ul.nav.navbar-nav
-              %li= link_to "Read", "/read"
-              %li= link_to "Feeds", "/feeds"
-              %li= link_to "Account", "/account"
+              %li= link_to 'Read', '/read'
+              %li= link_to 'History', '/history'
+              %li= link_to 'Feeds', '/feeds'
+              %li= link_to 'Account', '/account'
     .container
       .row
         .col-lg-9

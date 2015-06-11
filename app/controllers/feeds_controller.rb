@@ -8,6 +8,14 @@ class FeedsController < ApplicationController
     @feeds = current_user.feeds
   end
 
+  def history
+    @viewed = current_user.
+      viewed.
+      includes(:feed_entry, feed_entry: :feed).
+      order(id: :desc).
+      paginate(page: params[:page])
+  end
+
   def index
     @feeds = current_user.feeds
   end

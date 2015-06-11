@@ -1,0 +1,12 @@
+%table.table
+  %tr
+    %th Title
+    %th Feed
+    %th Date
+  - @viewed.each do |viewed|
+    %tr
+      %td= viewed.feed_entry.title
+      %td= viewed.feed_entry.feed.title
+      %td= viewed.created_at.blank? ? '' : viewed.created_at.to_date
+
+= will_paginate @viewed

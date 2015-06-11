@@ -17,6 +17,7 @@ gem 'turbolinks'
 gem 'twitter-bootstrap-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn'
+gem 'will_paginate'
 
 group :development do
   gem 'rubocop'
