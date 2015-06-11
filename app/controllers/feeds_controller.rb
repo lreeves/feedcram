@@ -37,10 +37,10 @@ class FeedsController < ApplicationController
 
     @unread_count = all_unread_entry_ids.count
     @unread_entry_ids = all_unread_entry_ids.first(10)
-    @entries = FeedEntry
-      .where(id: @unread_entry_ids)
-      .order(posting_date: :desc)
-      .includes(:feed)
+    @entries = FeedEntry.
+      where(id: @unread_entry_ids).
+      order(posting_date: :desc).
+      includes(:feed)
   end
 
   def show

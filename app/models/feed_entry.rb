@@ -8,6 +8,6 @@ class FeedEntry < ActiveRecord::Base
 
   # For feeds without time information
   def set_default_time
-    self.posting_date = Time.now
+    self.posting_date = Time.zone.now
   end
 end

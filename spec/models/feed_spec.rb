@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Feed, type: :model do
   describe '#crawl' do
     context 'for invalid feeds' do
-
       context 'for empty responses' do
         let(:feed) { Feed.create(url: 'http://badurl') }
         it 'increments the error count' do

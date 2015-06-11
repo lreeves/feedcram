@@ -26,3 +26,21 @@ Style/SingleSpaceBeforeFirstArg:
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 Style/StringLiterals:
   Enabled: false
+
+Style/DotPosition:
+  Description: Checks the position of the dot in multi-line method calls.
+  StyleGuide: https://github.com/bbatsov/ruby-style-guide#consistent-multi-line-chains
+  Enabled: true
+  EnforcedStyle: trailing
+  SupportedStyles:
+  - leading
+  - trailing
+
+Style/MultilineOperationIndentation:
+  Description: Checks indentation of binary operations that span more than one line.
+  Enabled: true
+  EnforcedStyle: indented
+  SupportedStyles:
+  - aligned
+  - indented
+
