@@ -2,7 +2,11 @@ class UsersController < ApplicationController
   skip_before_action :require_login
 
   def new
-    @user = User.new
+    if SETTINGS[:allow_registrations]
+      @user = User.new
+    else
+      head :forbidden
+    end
   end
 
   def create
