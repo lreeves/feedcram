@@ -65,8 +65,11 @@ class Feed < ActiveRecord::Base
     content = raw_entry.content
     content ||= raw_entry.summary
 
+    if raw_entry.published.present?
+      entry.update(posting_date: raw_entry.published)
+    end
+
     entry.update(
-      posting_date: raw_entry.published,
       content: content,
       title: raw_entry.title,
       url: raw_entry.url)
