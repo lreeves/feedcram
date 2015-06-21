@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   let!(:user) { User.create!(password: 'xxx') }
   let!(:feed) { Feed.create!(url: 'url') }
-  let!(:feed_entry1) { FeedEntry.create!(feed: feed, entry: 'x') }
-  let!(:feed_entry2) { FeedEntry.create!(feed: feed, entry: 'y') }
+  let!(:entry1) { Entry.create!(feed: feed, entry: 'x') }
+  let!(:entry2) { Entry.create!(feed: feed, entry: 'y') }
   let!(:sub) { UserSubscription.create!(user: user, feed: feed) }
 
   describe '#mark_all_read' do
@@ -22,7 +22,7 @@ RSpec.describe User, type: :model do
     context 'when there are unsubscribed feeds' do
       before do
         second_feed = Feed.create!(url: 'url2')
-        FeedEntry.create!(feed: second_feed, entry: 'x')
+        Entry.create!(feed: second_feed, entry: 'x')
       end
 
       it 'returns two items to read' do
@@ -32,7 +32,7 @@ RSpec.describe User, type: :model do
 
     context 'when an item is read' do
       before do
-        Viewed.create!(user: user, feed_entry: feed_entry2)
+        Viewed.create!(user: user, entry: entry2)
       end
 
       it 'returns one item to read' do

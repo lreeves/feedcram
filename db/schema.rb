@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150611025213) do
+ActiveRecord::Schema.define(version: 20150621174552) do
 
-  create_table "feed_entries", force: :cascade do |t|
+  create_table "entries", force: :cascade do |t|
     t.integer  "feed_id"
     t.string   "title"
     t.binary   "content"
@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 20150611025213) do
     t.string   "url"
   end
 
-  add_index "feed_entries", ["feed_id", "entry"], name: "index_feed_entries_on_feed_id_and_entry", unique: true
-  add_index "feed_entries", ["posting_date"], name: "index_feed_entries_on_posting_date"
+  add_index "entries", ["feed_id", "entry"], name: "index_entries_on_feed_id_and_entry", unique: true
+  add_index "entries", ["posting_date"], name: "index_entries_on_posting_date"
 
   create_table "feeds", force: :cascade do |t|
     t.string   "url"
@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 20150611025213) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "website"
-    t.integer  "crawl_errors",       default: 0
-    t.integer  "feed_entries_count", default: 0
+    t.integer  "crawl_errors",  default: 0
+    t.integer  "entries_count", default: 0
   end
 
   add_index "feeds", ["url"], name: "index_feeds_on_url", unique: true
@@ -59,11 +59,11 @@ ActiveRecord::Schema.define(version: 20150611025213) do
 
   create_table "viewed", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "feed_entry_id"
+    t.integer  "entry_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "viewed", ["user_id", "feed_entry_id"], name: "index_viewed_on_user_id_and_feed_entry_id", unique: true
+  add_index "viewed", ["user_id", "entry_id"], name: "index_viewed_on_user_id_and_entry_id", unique: true
 
 end

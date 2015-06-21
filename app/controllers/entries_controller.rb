@@ -1,5 +1,5 @@
 class EntriesController < ApplicationController
   def show
-    @entry = FeedEntry.find(params[:id])
+    @entry = Entry.find(params[:id])
   end
 end

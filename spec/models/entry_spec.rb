@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe FeedEntry, type: :model do
+RSpec.describe Entry, type: :model do
   describe '#new' do
     context 'when a feed is missing timestamps' do
       let(:feed) { Feed.create(url: 'http://antirez.com/rss') }
@@ -12,7 +12,7 @@ RSpec.describe FeedEntry, type: :model do
       end
 
       it 'populates the posting date' do
-        expect(feed.feed_entries.first.posting_date).to_not eq nil
+        expect(feed.entries.first.posting_date).to_not eq nil
       end
     end
   end

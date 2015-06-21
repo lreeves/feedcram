@@ -62,17 +62,17 @@ RSpec.describe Feed, type: :model do
           end
 
           it 'creates the correct amount of feed entries' do
-            expect(FeedEntry.all.count).to_not eq 0
+            expect(Entry.all.count).to_not eq 0
           end
 
           it 'sets the URL for each feed entry' do
-            FeedEntry.all.each do |entry|
+            Entry.all.each do |entry|
               expect(entry.url).to_not be_blank
             end
           end
 
           it 'sets content for each feed entry' do
-            FeedEntry.all.each do |entry|
+            Entry.all.each do |entry|
               expect(entry.content).to_not be_blank
             end
           end

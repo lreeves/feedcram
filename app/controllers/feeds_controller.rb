@@ -11,7 +11,7 @@ class FeedsController < ApplicationController
   def history
     @viewed = current_user.
       viewed.
-      includes(:feed_entry, feed_entry: :feed).
+      includes(:entry, entry: :feed).
       order(id: :desc).
       paginate(page: params[:page])
   end
@@ -37,7 +37,7 @@ class FeedsController < ApplicationController
 
     @unread_count = all_unread_entry_ids.count
     @unread_entry_ids = all_unread_entry_ids.first(10)
-    @entries = FeedEntry.
+    @entries = Entry.
       where(id: @unread_entry_ids).
       order(posting_date: :desc).
       includes(:feed)
@@ -45,7 +45,7 @@ class FeedsController < ApplicationController
 
   def show
     @feed = Feed.find(params[:id])
-    @entries = @feed.feed_entries.
+    @entries = @feed.entries.
       order(created_at: :desc).
       paginate(page: params[:page])
   end

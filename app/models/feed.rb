@@ -1,7 +1,7 @@
 class Feed < ActiveRecord::Base
   has_many :user_subscriptions
   has_many :users, through: :user_subscriptions
-  has_many :feed_entries
+  has_many :entries
 
   scope :with_subscribers, -> { joins(:user_subscriptions) }
 
@@ -19,7 +19,7 @@ class Feed < ActiveRecord::Base
           title: feed.title,
           website: feed.url)
         feed.entries.each { |entry| update_entry(entry) }
-        Feed.reset_counters(id, :feed_entries)
+        Feed.reset_counters(id, :entries)
       end
     end
   end
@@ -57,7 +57,7 @@ class Feed < ActiveRecord::Base
   end
 
   def update_entry(raw_entry)
-    entry = FeedEntry.find_or_create_by(
+    entry = Entry.find_or_create_by(
       feed: self,
       entry: raw_entry.entry_id)
 
