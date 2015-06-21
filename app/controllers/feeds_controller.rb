@@ -17,7 +17,7 @@ class FeedsController < ApplicationController
   end
 
   def index
-    @feeds = current_user.feeds
+    @feeds = current_user.feeds.paginate(page: params[:page])
   end
 
   def mark_all_read
