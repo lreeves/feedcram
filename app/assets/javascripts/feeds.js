@@ -19,28 +19,40 @@
     $(document).ready(ready);
     $(document).on('page:load', ready);
 
+    $("div.entry").on("swipeleft", nextEntry);
+    $("div.entry").on("swiperight", previousEntry);
+
+    function previousEntry(event) {
+      var cur = $('.current');
+      var prev = cur.prev('.entry');
+
+      if(prev.length) {
+        $(document).scrollTop(prev.offset().top);
+        cur.removeClass('current');
+        prev.addClass('current');
+      }
+    }
+
+    function nextEntry(event) {
+      var cur = $('.current');
+      var next = cur.next('.entry');
+
+      if(next.length) {
+        $(document).scrollTop(next.offset().top);
+        cur.removeClass('current');
+        next.addClass('current');
+      } else {
+        $(".mark-button").click();
+      }
+    }
+
     // Setup hooks for vim keys navigation
     $(document).keypress(function(event) {
-      var cur = $('.current');
 
       if(event.which == 106) {
-        var next = cur.next('.entry');
-
-        if(next.length) {
-          $(document).scrollTop(next.offset().top);
-          cur.removeClass('current');
-          next.addClass('current');
-        } else {
-          $(".mark-button").click();
-        }
+        nextEntry();
       } else if (event.which == 107) {
-        var prev = cur.prev('.entry');
-
-        if(prev.length) {
-          $(document).scrollTop(prev.offset().top);
-          cur.removeClass('current');
-          prev.addClass('current');
-        }
+        previousEntry();
       }
     });
   });
