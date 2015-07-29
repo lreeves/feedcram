@@ -1,6 +1,7 @@
 class FeedsController < ApplicationController
   def add
     current_user.subscribe_to_url(feed_params[:url])
+    flash[:notice] = 'Subscribed!'
     redirect_to :back
   end
 
