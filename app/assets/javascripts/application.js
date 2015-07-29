@@ -12,8 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require pre_mobile
-//= require jquery.mobile
-//= require post_mobile
 //= require twitter/bootstrap
 //= require_tree .
