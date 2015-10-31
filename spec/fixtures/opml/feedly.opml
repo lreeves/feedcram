@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<opml version="1.0">
+    <head>
+        <title>Test OPML file</title>
+    </head>
+    <body>
+        <outline text="Aws" title="Aws">
+            <outline type="rss" text="AWS Developer Blog" title="AWS Developer Blog" xmlUrl="http://ruby.awsblog.com/blog/feed/recentPosts.rss" htmlUrl="http://ruby.awsblog.com/blog/feed/recentPosts.rss"/>
+        </outline>
+        <outline text="Gaming" title="Gaming">
+            <outline type="rss" text="Rock, Paper, Shotgun" title="Rock, Paper, Shotgun" xmlUrl="http://feeds.feedburner.com/RockPaperShotgun" htmlUrl="http://www.rockpapershotgun.com"/>
+        </outline>
+        <outline type="rss" text="Discourse" title="Discourse" xmlUrl="http://blog.discourse.org/feed/atom/" htmlUrl="http://blog.discourse.org"/>
+    </body>
+</opml>

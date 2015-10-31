@@ -12,6 +12,6 @@ class AccountController < ApplicationController
     end
 
     flash[:notice] = "Parsed #{feeds.length} feeds"
-    redirect_to :back
+    redirect_to '/account'
   end
 end
