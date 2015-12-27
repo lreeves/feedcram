@@ -1,0 +1,25 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <%= link_to @feed.title, @feed.website %>
+    </h3>
+  </div>
+</div>
+<table class="table">
+  <tr>
+    <th>Title</th>
+    <th>Date</th>
+  </tr>
+  <% @entries.each do |entry| %>
+    <tr>
+      <td>
+        <%= link_to entry.title, entry_path(entry) %>
+      </td>
+      <td>
+        <%= entry.posting_date.to_date %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<%= will_paginate @entries %>
+

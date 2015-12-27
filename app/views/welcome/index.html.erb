@@ -1,0 +1,5 @@
+<h1>Welcome!</h1>
+<% if SETTINGS[:allow_registrations] %>
+  <%= link_to 'Create Account', new_user_path, class: 'btn btn-primary' %>
+<% end %>
+<%= link_to 'Login', '/login', class: 'btn btn-primary' %>

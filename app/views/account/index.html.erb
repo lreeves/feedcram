@@ -1,0 +1,24 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      Export
+    </h3>
+  </div>
+  <div class="panel-body">
+    <%= link_to 'Export OPML', '/feeds/export', class: 'btn btn-primary', data: { no_turbolink: true } %>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      Import
+    </h3>
+  </div>
+  <div class="panel-body">
+    <%= form_tag({action: :upload}, multipart: true) do %>
+      <%= file_field_tag 'opml' %>
+      <%= submit_tag 'Upload OPML', class: 'btn btn-default' %>
+    <% end %>
+  </div>
+</div>
+
