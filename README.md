@@ -26,6 +26,14 @@ If you run this in production I'd recommend using Unicorn:
 bin/unicorn
 ```
 
+One last note - if you have any issues compiling the libv8 or rubyracer
+components, then you may need to tell bundler to use the system v8 library
+(particularily on OSX):
+
+```shell
+bundle config build.libv8 --with-system-v8
+```
+
 ## Updating Feeds
 
 A simple Rake task is provided to update all feeds. Currently there are no
