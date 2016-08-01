@@ -6,7 +6,7 @@ RSpec.describe AccountController, type: :controller do
     let(:user) { User.create(email: 'test@example.com', password: 'password') }
 
     it 'processes the uploaded OPML file' do
-      post :upload, { opml: opml_file }, { user_id: user.id }
+      post :upload, params: { opml: opml_file }, session: { user_id: user.id }
 
       expect(Feed.count).to eq 3
       expect(user.feeds.count).to eq 3
