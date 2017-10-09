@@ -77,9 +77,6 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  # Enable bullet
-  config.after_initialize do
-    Bullet.enable = true
-    Bullet.bullet_logger = true
-  end
+  # Heroku
+  config.logger = Logger.new(STDOUT)
 end
