@@ -74,8 +74,6 @@ GEM
       loofah (>= 2.0)
       sax-machine (>= 1.0)
     ffi (1.9.18)
-    font-awesome-rails (4.7.0.2)
-      railties (>= 3.2, < 5.2)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     hashdiff (0.3.7)
@@ -244,7 +242,6 @@ DEPENDENCIES
   bullet
   capybara
   feedjira
-  font-awesome-rails
   jquery-rails
   less-rails
   pg
