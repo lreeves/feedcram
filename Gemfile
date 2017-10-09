@@ -4,6 +4,7 @@ ruby '2.4.2'
 gem 'rails', '~> 5.1.4'
 
 gem 'bcrypt'
+gem 'bugsnag'
 gem 'bullet'
 gem 'feedjira'
 gem 'jquery-rails'
