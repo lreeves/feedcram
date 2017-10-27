@@ -1,4 +1,4 @@
-class AddWebsiteToFeeds < ActiveRecord::Migration
+class AddWebsiteToFeeds < ActiveRecord::Migration[5.0]
   def change
     add_column :feeds, :website, :string
   end

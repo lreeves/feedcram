@@ -1,4 +1,4 @@
-class RemoveFeedFromViewed < ActiveRecord::Migration
+class RemoveFeedFromViewed < ActiveRecord::Migration[5.0]
   def change
     remove_index :viewed, [:user_id, :feed_id, :feed_entry_id]
     remove_column :viewed, :feed_id

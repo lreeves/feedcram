@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -14,56 +13,51 @@
 ActiveRecord::Schema.define(version: 20150621174552) do
 
   create_table "entries", force: :cascade do |t|
-    t.integer  "feed_id"
-    t.string   "title"
-    t.binary   "content"
+    t.integer "feed_id"
+    t.string "title"
+    t.binary "content"
     t.datetime "posting_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "entry"
-    t.string   "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "entry"
+    t.string "url"
+    t.index ["feed_id", "entry"], name: "index_entries_on_feed_id_and_entry", unique: true
+    t.index ["posting_date"], name: "index_entries_on_posting_date"
   end
-
-  add_index "entries", ["feed_id", "entry"], name: "index_entries_on_feed_id_and_entry", unique: true
-  add_index "entries", ["posting_date"], name: "index_entries_on_posting_date"
 
   create_table "feeds", force: :cascade do |t|
-    t.string   "url"
-    t.string   "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "website"
-    t.integer  "crawl_errors",  default: 0
-    t.integer  "entries_count", default: 0
+    t.string "url"
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "website"
+    t.integer "crawl_errors", default: 0
+    t.integer "entries_count", default: 0
+    t.index ["url"], name: "index_feeds_on_url", unique: true
   end
-
-  add_index "feeds", ["url"], name: "index_feeds_on_url", unique: true
 
   create_table "user_subscriptions", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "feed_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer "user_id"
+    t.integer "feed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "feed_id"], name: "index_user_subscriptions_on_user_id_and_feed_id", unique: true
   end
-
-  add_index "user_subscriptions", ["user_id", "feed_id"], name: "index_user_subscriptions_on_user_id_and_feed_id", unique: true
 
   create_table "users", force: :cascade do |t|
-    t.string   "email"
-    t.string   "password_digest"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
 
   create_table "viewed", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "entry_id"
+    t.integer "user_id"
+    t.integer "entry_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["user_id", "entry_id"], name: "index_viewed_on_user_id_and_entry_id", unique: true
   end
-
-  add_index "viewed", ["user_id", "entry_id"], name: "index_viewed_on_user_id_and_entry_id", unique: true
 
 end

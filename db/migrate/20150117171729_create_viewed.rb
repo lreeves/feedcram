@@ -1,4 +1,4 @@
-class CreateViewed < ActiveRecord::Migration
+class CreateViewed < ActiveRecord::Migration[5.0]
   def change
     create_table :viewed do |t|
       t.integer :user_id
